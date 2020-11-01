@@ -45,14 +45,6 @@
         "device": {
           "type": "iPhone 11"
         }
-      },
-      "ios.sim.release": {
-        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/firstTest.app",
-        "build": "xcodebuild -workspace ios/firstTest.xcworkspace  -scheme firstTest -configuration Release -sdk iphonesimulator -derivedDataPath ios/build",
-        "type": "ios.simulator",
-        "device": {
-          "type": "iPhone 11"
-        }
       }
     }
   }

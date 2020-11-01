@@ -17,8 +17,7 @@ import {
   TextInput,
   FlatList,
 } from 'react-native';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import Counter from './Counter';
 
 const App = () => {
   const [totalPressed, setTotalPressed] = useState(0);
@@ -27,19 +26,28 @@ const App = () => {
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
         <View style={styles.container}>
-          <Text style={styles.sectionDescription} testID="welcome">
+          <Text style={styles.label} testID="welcome">
             Welcome
           </Text>
           <Button
-            title={totalPressed.toString()}
+            title={totalPressed === 0 ? 'start' : 'clicked'}
             testID="startButton"
             onPress={() => {
               setTotalPressed(totalPressed + 1);
             }}
           />
+          <View testID="containerCounter">
+            <Counter
+              testID="counter"
+              style={styles.label}
+              value={totalPressed}
+            />
+          </View>
+          <Counter testID="counter" style={styles.label} value={totalPressed} />
           <TextInput testID="input" style={styles.input} />
           <View style={styles.listContainer}>
             <FlatList
+              keyExtractor={(item) => item}
               testID="list"
               data={['Ana', 'Tom', 'Dan', 'Pedro']}
               renderItem={({item}) => (
@@ -58,8 +66,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
   },
-  sectionDescription: {
+  label: {
     textAlign: 'center',
+    paddingBottom: 10,
   },
   input: {
     width: '80%',
